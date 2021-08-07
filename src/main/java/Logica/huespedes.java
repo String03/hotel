@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
  */
 public class huespedes implements Serializable {
     @Id
-    private int id;
+    private Integer id;
     @Basic
     private String dni;
     @Basic
@@ -35,7 +35,7 @@ public class huespedes implements Serializable {
     @Basic
     private String profesion;
 
-    public huespedes(int id, String dni, String nombre, String apellido, Date fecha_de_nacimiento, String direccion, String profesion) {
+    public huespedes(Integer id, String dni, String nombre, String apellido, Date fecha_de_nacimiento, String direccion, String profesion) {
         this.id = id;
         this.dni = dni;
         this.nombre = nombre;
@@ -45,11 +45,11 @@ public class huespedes implements Serializable {
         this.profesion = profesion;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

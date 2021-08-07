@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
  */
 public class reservas implements Serializable {
     @Id
-    private int id;
+    private Integer id;
     @Temporal(TemporalType.DATE)
     private Date fecha_check_in;
     @Temporal(TemporalType.DATE)
@@ -35,7 +35,7 @@ public class reservas implements Serializable {
     @Basic
     private int huesped_id;
 
-    public reservas(int id, Date fecha_check_in, Date fecha_check_out, int empleado_id, int habitacion_id, int cantidad_personas, int huesped_id) {
+    public reservas(Integer id, Date fecha_check_in, Date fecha_check_out, int empleado_id, int habitacion_id, int cantidad_personas, int huesped_id) {
         this.id = id;
         this.fecha_check_in = fecha_check_in;
         this.fecha_check_out = fecha_check_out;
@@ -45,11 +45,11 @@ public class reservas implements Serializable {
         this.huesped_id = huesped_id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

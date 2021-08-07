@@ -18,23 +18,23 @@ import javax.persistence.Id;
  */
 public class tipo_de_habitaciones implements Serializable {
     @Id
-    private int id;
+    private Integer id;
     @Basic
     private String descripcion;
     @Basic
     private int cantidad_personas_maxima;
 
-    public tipo_de_habitaciones(int id, String descripcion, int cantidad_personas_maxima) {
+    public tipo_de_habitaciones(Integer id, String descripcion, int cantidad_personas_maxima) {
         this.id = id;
         this.descripcion = descripcion;
         this.cantidad_personas_maxima = cantidad_personas_maxima;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

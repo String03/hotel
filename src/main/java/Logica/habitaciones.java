@@ -18,7 +18,7 @@ import javax.persistence.Id;
  */
 public class habitaciones implements Serializable {
     @Id
-    private int id;
+    private Integer id;
     @Basic
     private String piso;
     @Basic
@@ -26,18 +26,18 @@ public class habitaciones implements Serializable {
     @Basic
     private int tipo_de_habitacion_id;
 
-    public habitaciones(int id, String piso, String nombre, int tipo_de_habitacion_id) {
+    public habitaciones(Integer id, String piso, String nombre, int tipo_de_habitacion_id) {
         this.id = id;
         this.piso = piso;
         this.nombre = nombre;
         this.tipo_de_habitacion_id = tipo_de_habitacion_id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
