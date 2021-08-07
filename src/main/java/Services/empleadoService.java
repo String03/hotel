@@ -34,8 +34,5 @@ public class empleadoService {
         empleadosRepository.delete(empleado);
     }
     
-    public void ModificarEmpleado(empleados empleado){
-        empleadosRepository.delete(empleado);
-    }
     
 }
