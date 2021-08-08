@@ -2,11 +2,11 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="Trabajo_Practico_Integrador_Ana_Laura_Moyano_PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>Logica.tipo_de_habitaciones</class>
-    <class>Logica.huespedes</class>
-    <class>Logica.reservas</class>
-    <class>Logica.empleados</class>
-    <class>Logica.habitaciones</class>
+    <class>com.Trabajo_Practico_Integrador.hotel.entities.Huespedes</class>
+    <class>com.Trabajo_Practico_Integrador.hotel.entities.Empleados</class>
+    <class>com.Trabajo_Practico_Integrador.hotel.entities.Reservas</class>
+    <class>com.Trabajo_Practico_Integrador.hotel.entities.Tipo_de_habitaciones</class>
+    <class>com.Trabajo_Practico_Integrador.hotel.entities.Habitaciones</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/hotel_pringles?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="hotel"/>

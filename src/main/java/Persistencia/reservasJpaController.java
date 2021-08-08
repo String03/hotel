@@ -5,7 +5,7 @@
  */
 package Persistencia;
 
-import Logica.reservas;
+import com.Trabajo_Practico_Integrador.hotel.entities.Reservas;
 import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.exceptions.PreexistingEntityException;
 import java.io.Serializable;
@@ -37,7 +37,7 @@ public class reservasJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(reservas reservas) throws PreexistingEntityException, Exception {
+    public void create(Reservas reservas) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -56,7 +56,7 @@ public class reservasJpaController implements Serializable {
         }
     }
 
-    public void edit(reservas reservas) throws NonexistentEntityException, Exception {
+    public void edit(Reservas reservas) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -84,9 +84,9 @@ public class reservasJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            reservas reservas;
+            Reservas reservas;
             try {
-                reservas = em.getReference(reservas.class, id);
+                reservas = em.getReference(Reservas.class, id);
                 reservas.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The reservas with id " + id + " no longer exists.", enfe);
@@ -100,19 +100,19 @@ public class reservasJpaController implements Serializable {
         }
     }
 
-    public List<reservas> findreservasEntities() {
+    public List<Reservas> findreservasEntities() {
         return findreservasEntities(true, -1, -1);
     }
 
-    public List<reservas> findreservasEntities(int maxResults, int firstResult) {
+    public List<Reservas> findreservasEntities(int maxResults, int firstResult) {
         return findreservasEntities(false, maxResults, firstResult);
     }
 
-    private List<reservas> findreservasEntities(boolean all, int maxResults, int firstResult) {
+    private List<Reservas> findreservasEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(reservas.class));
+            cq.select(cq.from(Reservas.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -124,10 +124,10 @@ public class reservasJpaController implements Serializable {
         }
     }
 
-    public reservas findreservas(int id) {
+    public Reservas findreservas(int id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(reservas.class, id);
+            return em.find(Reservas.class, id);
         } finally {
             em.close();
         }
@@ -137,7 +137,7 @@ public class reservasJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<reservas> rt = cq.from(reservas.class);
+            Root<Reservas> rt = cq.from(Reservas.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

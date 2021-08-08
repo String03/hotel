@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Logica;
+package com.Trabajo_Practico_Integrador.hotel.entities;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
  *
  * @author fvg
  */
-public class empleados implements Serializable {
+public class Empleados implements Serializable {
     @Id
     private Integer id;
     @Basic
@@ -39,7 +39,7 @@ public class empleados implements Serializable {
     @Basic
     private String contrasenia_usuario;
 
-    public empleados(Integer id, String dni, String nombre, String apellido, Date fecha_de_nacimiento, String direccion, String cargo, String nombre_usuario, String contrasenia_usuario) {
+    public Empleados(Integer id, String dni, String nombre, String apellido, Date fecha_de_nacimiento, String direccion, String cargo, String nombre_usuario, String contrasenia_usuario) {
         this.id = id;
         this.dni = dni;
         this.nombre = nombre;

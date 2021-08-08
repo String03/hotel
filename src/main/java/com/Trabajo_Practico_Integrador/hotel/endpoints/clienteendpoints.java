@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package buildendpoints;
+package com.Trabajo_Practico_Integrador.hotel.endpoints;
 
-import Services.empleadoService;
+import com.Trabajo_Practico_Integrador.hotel.services.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/empleados")
 public class clienteendpoints {
     @Autowired
-    private empleadoService service;
+    private EmpleadoService service;
     
    
     @GetMapping

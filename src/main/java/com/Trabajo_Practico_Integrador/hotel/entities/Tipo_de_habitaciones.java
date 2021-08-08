@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Logica;
+package com.Trabajo_Practico_Integrador.hotel.entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -16,7 +16,7 @@ import javax.persistence.Id;
  *
  * @author fvg
  */
-public class tipo_de_habitaciones implements Serializable {
+public class Tipo_de_habitaciones implements Serializable {
     @Id
     private Integer id;
     @Basic
@@ -24,7 +24,7 @@ public class tipo_de_habitaciones implements Serializable {
     @Basic
     private int cantidad_personas_maxima;
 
-    public tipo_de_habitaciones(Integer id, String descripcion, int cantidad_personas_maxima) {
+    public Tipo_de_habitaciones(Integer id, String descripcion, int cantidad_personas_maxima) {
         this.id = id;
         this.descripcion = descripcion;
         this.cantidad_personas_maxima = cantidad_personas_maxima;

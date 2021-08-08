@@ -5,7 +5,7 @@
  */
 package Persistencia;
 
-import Logica.tipo_de_habitaciones;
+import com.Trabajo_Practico_Integrador.hotel.entities.Tipo_de_habitaciones;
 import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.exceptions.PreexistingEntityException;
 import java.io.Serializable;
@@ -37,7 +37,7 @@ public class tipo_de_habitacionesJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(tipo_de_habitaciones tipo_de_habitaciones) throws PreexistingEntityException, Exception {
+    public void create(Tipo_de_habitaciones tipo_de_habitaciones) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -56,7 +56,7 @@ public class tipo_de_habitacionesJpaController implements Serializable {
         }
     }
 
-    public void edit(tipo_de_habitaciones tipo_de_habitaciones) throws NonexistentEntityException, Exception {
+    public void edit(Tipo_de_habitaciones tipo_de_habitaciones) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -84,9 +84,9 @@ public class tipo_de_habitacionesJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            tipo_de_habitaciones tipo_de_habitaciones;
+            Tipo_de_habitaciones tipo_de_habitaciones;
             try {
-                tipo_de_habitaciones = em.getReference(tipo_de_habitaciones.class, id);
+                tipo_de_habitaciones = em.getReference(Tipo_de_habitaciones.class, id);
                 tipo_de_habitaciones.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The tipo_de_habitaciones with id " + id + " no longer exists.", enfe);
@@ -100,19 +100,19 @@ public class tipo_de_habitacionesJpaController implements Serializable {
         }
     }
 
-    public List<tipo_de_habitaciones> findtipo_de_habitacionesEntities() {
+    public List<Tipo_de_habitaciones> findtipo_de_habitacionesEntities() {
         return findtipo_de_habitacionesEntities(true, -1, -1);
     }
 
-    public List<tipo_de_habitaciones> findtipo_de_habitacionesEntities(int maxResults, int firstResult) {
+    public List<Tipo_de_habitaciones> findtipo_de_habitacionesEntities(int maxResults, int firstResult) {
         return findtipo_de_habitacionesEntities(false, maxResults, firstResult);
     }
 
-    private List<tipo_de_habitaciones> findtipo_de_habitacionesEntities(boolean all, int maxResults, int firstResult) {
+    private List<Tipo_de_habitaciones> findtipo_de_habitacionesEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(tipo_de_habitaciones.class));
+            cq.select(cq.from(Tipo_de_habitaciones.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -124,10 +124,10 @@ public class tipo_de_habitacionesJpaController implements Serializable {
         }
     }
 
-    public tipo_de_habitaciones findtipo_de_habitaciones(int id) {
+    public Tipo_de_habitaciones findtipo_de_habitaciones(int id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(tipo_de_habitaciones.class, id);
+            return em.find(Tipo_de_habitaciones.class, id);
         } finally {
             em.close();
         }
@@ -137,7 +137,7 @@ public class tipo_de_habitacionesJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<tipo_de_habitaciones> rt = cq.from(tipo_de_habitaciones.class);
+            Root<Tipo_de_habitaciones> rt = cq.from(Tipo_de_habitaciones.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

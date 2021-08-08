@@ -5,7 +5,7 @@
  */
 package Persistencia;
 
-import Logica.empleados;
+import com.Trabajo_Practico_Integrador.hotel.entities.Empleados;
 import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.exceptions.PreexistingEntityException;
 import java.io.Serializable;
@@ -39,7 +39,7 @@ public class empleadosJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(empleados empleados) throws PreexistingEntityException, Exception {
+    public void create(Empleados empleados) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -58,7 +58,7 @@ public class empleadosJpaController implements Serializable {
         }
     }
 
-    public void edit(empleados empleados) throws NonexistentEntityException, Exception {
+    public void edit(Empleados empleados) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -86,9 +86,9 @@ public class empleadosJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            empleados empleados;
+            Empleados empleados;
             try {
-                empleados = em.getReference(empleados.class, id);
+                empleados = em.getReference(Empleados.class, id);
                 empleados.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The empleados with id " + id + " no longer exists.", enfe);
@@ -102,19 +102,19 @@ public class empleadosJpaController implements Serializable {
         }
     }
 
-    public List<empleados> findempleadosEntities() {
+    public List<Empleados> findempleadosEntities() {
         return findempleadosEntities(true, -1, -1);
     }
 
-    public List<empleados> findempleadosEntities(int maxResults, int firstResult) {
+    public List<Empleados> findempleadosEntities(int maxResults, int firstResult) {
         return findempleadosEntities(false, maxResults, firstResult);
     }
 
-    private List<empleados> findempleadosEntities(boolean all, int maxResults, int firstResult) {
+    private List<Empleados> findempleadosEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(empleados.class));
+            cq.select(cq.from(Empleados.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -126,10 +126,10 @@ public class empleadosJpaController implements Serializable {
         }
     }
 
-    public empleados findempleados(int id) {
+    public Empleados findempleados(int id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(empleados.class, id);
+            return em.find(Empleados.class, id);
         } finally {
             em.close();
         }
@@ -139,7 +139,7 @@ public class empleadosJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<empleados> rt = cq.from(empleados.class);
+            Root<Empleados> rt = cq.from(Empleados.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

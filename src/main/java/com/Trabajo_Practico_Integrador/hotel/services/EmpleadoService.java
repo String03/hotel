@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Services;
+package com.Trabajo_Practico_Integrador.hotel.services;
 
-import Logica.empleados;
-import Repositories.empleadoRepository;
+import com.Trabajo_Practico_Integrador.hotel.entities.Empleados;
+import com.Trabajo_Practico_Integrador.hotel.repositories.empleadoRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,22 +17,24 @@ import org.springframework.stereotype.Service;
  */
 @Service
 
-public class empleadoService {
+public class EmpleadoService {
     @Autowired
     private empleadoRepository empleadosRepository;
 
-    public List<empleados> ListarEmpleado(){
+    public List<Empleados> ListarEmpleado(){
         return empleadosRepository.findAll();
     }
 
-    public void AgregarEmpleado(empleados empleado){
+    public void AgregarEmpleado(Empleados empleado){
         empleadosRepository.save(empleado);
     }
     
     
-    public void EliminarEmpleado(empleados empleado){
+    public void EliminarEmpleado(Empleados empleado){
         empleadosRepository.delete(empleado);
     }
+    
+   
     
     
 }

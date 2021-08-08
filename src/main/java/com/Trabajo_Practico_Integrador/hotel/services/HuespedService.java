@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Services;
+package com.Trabajo_Practico_Integrador.hotel.services;
 
-import Logica.huespedes;
-import Repositories.huespedesRepository;
+import com.Trabajo_Practico_Integrador.hotel.entities.Huespedes;
+import com.Trabajo_Practico_Integrador.hotel.repositories.huespedesRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,19 +16,19 @@ import org.springframework.stereotype.Service;
  * @author fvg
  */
 @Service
-public class huespedService {
+public class HuespedService {
     @Autowired
     private huespedesRepository huespedRepository;
     
-    public List<huespedes> ListarHuespedes(){
+    public List<Huespedes> ListarHuespedes(){
         return huespedRepository.findAll();
     }
     
-    public void EliminarHuespedes(huespedes huesped){
+    public void EliminarHuespedes(Huespedes huesped){
         huespedRepository.delete(huesped);
     }
     
-    public void AgregarHuespedes(huespedes huesped){
+    public void AgregarHuespedes(Huespedes huesped){
         huespedRepository.save(huesped);
     }
     

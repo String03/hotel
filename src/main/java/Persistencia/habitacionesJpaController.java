@@ -5,7 +5,7 @@
  */
 package Persistencia;
 
-import Logica.habitaciones;
+import com.Trabajo_Practico_Integrador.hotel.entities.Habitaciones;
 import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.exceptions.PreexistingEntityException;
 import java.io.Serializable;
@@ -37,7 +37,7 @@ public class habitacionesJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(habitaciones habitaciones) throws PreexistingEntityException, Exception {
+    public void create(Habitaciones habitaciones) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -56,7 +56,7 @@ public class habitacionesJpaController implements Serializable {
         }
     }
 
-    public void edit(habitaciones habitaciones) throws NonexistentEntityException, Exception {
+    public void edit(Habitaciones habitaciones) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -84,9 +84,9 @@ public class habitacionesJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            habitaciones habitaciones;
+            Habitaciones habitaciones;
             try {
-                habitaciones = em.getReference(habitaciones.class, id);
+                habitaciones = em.getReference(Habitaciones.class, id);
                 habitaciones.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The habitaciones with id " + id + " no longer exists.", enfe);
@@ -100,19 +100,19 @@ public class habitacionesJpaController implements Serializable {
         }
     }
 
-    public List<habitaciones> findhabitacionesEntities() {
+    public List<Habitaciones> findhabitacionesEntities() {
         return findhabitacionesEntities(true, -1, -1);
     }
 
-    public List<habitaciones> findhabitacionesEntities(int maxResults, int firstResult) {
+    public List<Habitaciones> findhabitacionesEntities(int maxResults, int firstResult) {
         return findhabitacionesEntities(false, maxResults, firstResult);
     }
 
-    private List<habitaciones> findhabitacionesEntities(boolean all, int maxResults, int firstResult) {
+    private List<Habitaciones> findhabitacionesEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(habitaciones.class));
+            cq.select(cq.from(Habitaciones.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -124,10 +124,10 @@ public class habitacionesJpaController implements Serializable {
         }
     }
 
-    public habitaciones findhabitaciones(int id) {
+    public Habitaciones findhabitaciones(int id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(habitaciones.class, id);
+            return em.find(Habitaciones.class, id);
         } finally {
             em.close();
         }
@@ -137,7 +137,7 @@ public class habitacionesJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<habitaciones> rt = cq.from(habitaciones.class);
+            Root<Habitaciones> rt = cq.from(Habitaciones.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

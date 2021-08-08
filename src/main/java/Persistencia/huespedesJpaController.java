@@ -5,7 +5,7 @@
  */
 package Persistencia;
 
-import Logica.huespedes;
+import com.Trabajo_Practico_Integrador.hotel.entities.Huespedes;
 import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.exceptions.PreexistingEntityException;
 import java.io.Serializable;
@@ -37,7 +37,7 @@ public class huespedesJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(huespedes huespedes) throws PreexistingEntityException, Exception {
+    public void create(Huespedes huespedes) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -56,7 +56,7 @@ public class huespedesJpaController implements Serializable {
         }
     }
 
-    public void edit(huespedes huespedes) throws NonexistentEntityException, Exception {
+    public void edit(Huespedes huespedes) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -84,9 +84,9 @@ public class huespedesJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            huespedes huespedes;
+            Huespedes huespedes;
             try {
-                huespedes = em.getReference(huespedes.class, id);
+                huespedes = em.getReference(Huespedes.class, id);
                 huespedes.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The huespedes with id " + id + " no longer exists.", enfe);
@@ -100,19 +100,19 @@ public class huespedesJpaController implements Serializable {
         }
     }
 
-    public List<huespedes> findhuespedesEntities() {
+    public List<Huespedes> findhuespedesEntities() {
         return findhuespedesEntities(true, -1, -1);
     }
 
-    public List<huespedes> findhuespedesEntities(int maxResults, int firstResult) {
+    public List<Huespedes> findhuespedesEntities(int maxResults, int firstResult) {
         return findhuespedesEntities(false, maxResults, firstResult);
     }
 
-    private List<huespedes> findhuespedesEntities(boolean all, int maxResults, int firstResult) {
+    private List<Huespedes> findhuespedesEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(huespedes.class));
+            cq.select(cq.from(Huespedes.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -124,10 +124,10 @@ public class huespedesJpaController implements Serializable {
         }
     }
 
-    public huespedes findhuespedes(int id) {
+    public Huespedes findhuespedes(int id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(huespedes.class, id);
+            return em.find(Huespedes.class, id);
         } finally {
             em.close();
         }
@@ -137,7 +137,7 @@ public class huespedesJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<huespedes> rt = cq.from(huespedes.class);
+            Root<Huespedes> rt = cq.from(Huespedes.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

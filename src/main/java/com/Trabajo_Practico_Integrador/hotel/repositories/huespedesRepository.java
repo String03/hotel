@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Repositories;
+package com.Trabajo_Practico_Integrador.hotel.repositories;
 
 
-import Logica.reservas;
+import com.Trabajo_Practico_Integrador.hotel.entities.Huespedes;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author fvg
  */
-public interface reservasRepository extends JpaRepository<reservas,Integer>{
+public interface huespedesRepository extends JpaRepository<Huespedes,Integer>{
     
 }
