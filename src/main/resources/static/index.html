@@ -9,8 +9,83 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" ></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
     </head>
     <body>
-        <div>TODO write content</div>
+
+        <div id = "app">
+                    <div class="card">
+            <div class="card-body">
+                <div>
+                    <pre>
+                        {{habitacion}}
+                    </pre>
+                    <form>
+                    <div class="mb-3">
+                      <label class="form-label">Piso</label>
+                      <input type="text" class="form-control" v-model="habitacion.piso">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Nombre de Habitacion</label>
+                      <input type="text" class="form-control" v-model="habitacion.nombre">
+                    </div>
+                    <div class="mb-3">
+                     
+                      <label class="form-label" for="exampleCheck1">Descripción de la habitación</label>
+                        <select class="form-control" v-model="habitacion.tipo_de_habitacion_id">
+                        <option v-for="option in tipos_de_habitaciones" v-bind:value="option.id">
+                          {{ option.descripcion}}
+                        </option>
+                      </select>
+
+                    </div>
+                        <input type="button" class="btn btn-primary" value="Guardar Datos" v-on:click = "agregarHabitacionNueva()"/>
+                  </form>
+                </div>    
+            </div>
+                           
+           
+        </div>
+        </div>
     </body>
+    <script>
+          function crearHabitacionNueva(){
+              return {id: 0, piso:"",nombre:"",tipo_de_habitacion_id:0}
+          }
+          var app = new Vue({
+          el: '#app',
+          data: {
+            message: 'Hello Vue!',
+            habitacion : crearHabitacionNueva(),
+            habitaciones: [],
+            tipo_de_habitacion: 0,
+            tipos_de_habitaciones: [{id:1,descripcion:"Simple",cantidad_personas_maxima:4}]
+          },
+          methods:{
+              refrescarHabitacion: async function(){
+                try{
+                  this.habitaciones = await axios.get("/api/habitaciones")  
+                }
+                catch(ex){
+                    this.habitaciones = []
+                }
+              },
+              agregarHabitacionNueva:async function(){
+                  try{
+                      await axios.post("api/habitaciones",this.habitacion);
+                      await this.refrescarHabitacion();
+                      this.habitacion = crearHabitacionNueva();
+                  }
+                  catch(ex){
+                      alert("Error agregando habitacion")
+                  }
+              }
+          }
+        })
+    </script>
 </html>

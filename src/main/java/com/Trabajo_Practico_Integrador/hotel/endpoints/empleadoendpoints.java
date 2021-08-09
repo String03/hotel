@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author fvg
  */
 @RestController
-@RequestMapping(path = "/empleados")
-public class clienteendpoints {
+@RequestMapping(path = "/api/empleados")
+public class empleadoendpoints {
     @Autowired
     private EmpleadoService service;
     

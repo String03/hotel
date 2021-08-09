@@ -7,7 +7,10 @@ package com.Trabajo_Practico_Integrador.hotel.entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
@@ -18,6 +21,7 @@ import javax.persistence.Id;
  */
 public class Habitaciones implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Basic
     private String piso;
@@ -33,6 +37,12 @@ public class Habitaciones implements Serializable {
         this.tipo_de_habitacion_id = tipo_de_habitacion_id;
     }
 
+    public Habitaciones() {
+    }
+
+    
+    
+    
     public Integer getId() {
         return id;
     }
