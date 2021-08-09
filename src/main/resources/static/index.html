@@ -46,6 +46,21 @@ and open the template in the editor.
                     </div>
                         <input type="button" class="btn btn-primary" value="Guardar Datos" v-on:click = "agregarHabitacionNueva()"/>
                   </form>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Piso</th>
+                                <th>Nombre de la Habitación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="option in habitaciones">
+                                <td>{{option.piso}}</td>
+                                <td>{{option.nombre}}</td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>    
             </div>
                            
@@ -66,10 +81,15 @@ and open the template in the editor.
             tipo_de_habitacion: 0,
             tipos_de_habitaciones: [{id:1,descripcion:"Simple",cantidad_personas_maxima:4}]
           },
-          methods:{
+            created: function(){
+                this.refrescarHabitacion();
+            }
+           ,
+            methods:{
               refrescarHabitacion: async function(){
                 try{
-                  this.habitaciones = await axios.get("/api/habitaciones")  
+                  this.habitaciones = (await axios.get("/api/habitaciones")).data;
+                  
                 }
                 catch(ex){
                     this.habitaciones = []
