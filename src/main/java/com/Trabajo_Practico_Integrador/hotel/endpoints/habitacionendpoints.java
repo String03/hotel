@@ -9,6 +9,7 @@ import com.Trabajo_Practico_Integrador.hotel.entities.Habitaciones;
 import com.Trabajo_Practico_Integrador.hotel.services.HabitacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,4 +42,27 @@ public class habitacionendpoints {
             return ResponseEntity.badRequest().body(ex);
         }
     }
+    
+    @PostMapping(consumes = "application/json",path = "eliminar")
+    public ResponseEntity eliminarHabitacion(@RequestBody Habitaciones habitacion){
+        try{
+            service.EliminarHabitaciones(habitacion);
+            return ResponseEntity.ok().build();
+        }
+        catch(Exception ex){
+            return ResponseEntity.badRequest().body(ex);
+        }
+    } 
+    
+    @PostMapping(consumes = "application/json", path = "actualizar")
+    public ResponseEntity modificarhabitacion(@RequestBody Habitaciones habitacion){
+        try{
+            service.AgregarHabitaciones(habitacion);
+            return ResponseEntity.ok().build();
+        }
+        catch(Exception ex){
+            return ResponseEntity.badRequest().body(ex);
+        }
+    }
+    
 }

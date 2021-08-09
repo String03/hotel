@@ -44,20 +44,28 @@ and open the template in the editor.
                       </select>
 
                     </div>
-                        <input type="button" class="btn btn-primary" value="Guardar Datos" v-on:click = "agregarHabitacionNueva()"/>
+                        <input v-if="habitacion.id == 0" type="button" class="btn btn-primary" value="Guardar Datos" v-on:click = "agregarHabitacionNueva()"/>
+                        <input v-if="habitacion.id !=0" type="button" class="btn btn-primary" value="Actualizar Datos" v-on:click = "modificarHabitacion()"/>
                   </form>
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Piso</th>
                                 <th>Nombre de la Habitación</th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="option in habitaciones">
                                 <td>{{option.piso}}</td>
                                 <td>{{option.nombre}}</td>
-                                
+                                <td>
+                                    <input type="button" class="btn btn-danger" value="Eliminar Datos" v-on:click ="eliminarHabitacion(option)" />
+                                </td>
+                                <td>
+                                    <input type="button" class="btn btn-primary" value="Seleccionar Datos" v-on:click ="seleccionarHabitacion(option)" />
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -102,10 +110,36 @@ and open the template in the editor.
                       this.habitacion = crearHabitacionNueva();
                   }
                   catch(ex){
-                      alert("Error agregando habitacion")
+                      alert("Error agregando habitación")
                   }
+              },
+              
+              eliminarHabitacion: async function(habitacion){
+                  try{
+                      await axios.post("api/habitaciones/eliminar",habitacion)
+                      await this.refrescarHabitacion();
+                      
+                }
+                  catch(ex){
+                      alert("Error agregando habitación")
+                  }
+              },
+              
+              modificarHabitacion: async function(){
+                  try{
+                      await axios.post("api/habitaciones/actualizar",this.habitacion);
+                      this.habitacion = crearHabitacionNueva();
+                      await this.refrescarHabitacion();
+                  }
+                  catch(ex){
+                      alert("No se puede modificar habitación")
+                  }
+              },
+              
+              seleccionarHabitacion: function(habitacion){
+                this.habitacion = {...habitacion};  
               }
-          }
-        })
+              
+        }})
     </script>
 </html>
